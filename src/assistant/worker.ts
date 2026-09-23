@@ -29,6 +29,7 @@ class LocalSink implements IUploader {
 class AssistantBot extends GoogleMeetBot {
   recording = false;
   private cancelRequested = false;
+  get cancelled(): boolean { return this.cancelRequested; }
   protected async onPageCreated(): Promise<void> { if (this.cancelRequested) await this.stop(); }
   async stop(): Promise<void> {
     if (this.page && this.recording) { await stopTab(this.page); }
@@ -65,5 +66,6 @@ async function run(): Promise<void> {
   await notify({ media: 'recording.webm', artifacts: ['recording.webm', 'capture.webm'], duration: (Date.now() - began) / 1000 });
 }
 void run().then(() => process.exit(0)).catch(async error => {
-  await notify({ status: 'failed', error: error instanceof Error ? error.message : String(error) }); process.exit(1);
+  await notify({ status: bot.cancelled ? 'cancelled' : 'failed', stage: undefined, error: bot.cancelled ? undefined : error instanceof Error ? error.message : String(error) });
+  process.exit(bot.cancelled ? 0 : 1);
 }).finally(() => clearTimeout(admissionDeadline));
