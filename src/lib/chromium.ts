@@ -1,5 +1,6 @@
 import { Browser, BrowserContext, Page } from 'playwright';
 import { chromium } from 'playwright-extra';
+import { launchAssistantPage } from '../assistant/browser';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import config from '../config';
 import { getCorrelationIdLog } from '../util/logger';
@@ -125,6 +126,7 @@ async function launchPersistentContextWithTimeout(launchFn: () => Promise<Browse
 }
 
 async function createBrowserContext(url: string, correlationId: string, botType: BotType = 'google'): Promise<Page> {
+  if (process.env.MEETING_ASSISTANT_MODE === 'true') return launchAssistantPage(new URL(url).origin);
   const size = { width: 1280, height: 720 };
   const browserWindowSize = { width: size.width, height: size.height + 80 };
 

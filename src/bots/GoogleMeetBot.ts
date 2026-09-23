@@ -91,6 +91,8 @@ export class GoogleMeetBot extends MeetBotBase {
 
     this.page = await createBrowserContext(url, this._correlationId, 'google');
 
+    await this.onPageCreated();
+
     this._logger.info('Navigating to Google Meet URL...');
     await this.page.goto(url, { waitUntil: 'domcontentloaded' });
 
@@ -646,7 +648,9 @@ export class GoogleMeetBot extends MeetBotBase {
     pushState('finished');
   }
 
-  private async recordMeetingPage(
+  protected async onPageCreated(): Promise<void> {}
+
+  protected async recordMeetingPage(
     { teamId, userId, eventId, botId, uploader }: 
     { teamId: string, userId: string, eventId?: string, botId?: string, uploader: IUploader }
   ): Promise<void> {

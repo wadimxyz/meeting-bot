@@ -24,7 +24,7 @@ const requiredSettings = [
   'GCP_MISC_BUCKET',
 ];
 const missingSettings = requiredSettings.filter((s) => !process.env[s]);
-if (missingSettings.length > 0) {
+if (process.env.MEETING_ASSISTANT_MODE !== 'true' && missingSettings.length > 0) {
   missingSettings.forEach((ms) =>
     console.error(`ENV settings ${ms} is missing.`)
   );
