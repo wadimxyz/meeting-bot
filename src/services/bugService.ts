@@ -32,7 +32,7 @@ export const uploadDebugImage = async (
   opts?: UploadOption
 ) => {
   try {
-    if (NODE_ENV === 'development') {
+    if (process.env.MEETING_ASSISTANT_MODE === 'true' || NODE_ENV === 'development') {
       // TODO add disk based file saving
       return;
     }

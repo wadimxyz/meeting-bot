@@ -16,6 +16,7 @@ export const patchBotStatus = async ({
     provider: 'google' | 'microsoft' | 'zoom',
     status: BotStatus[],
 }, logger: Logger) => {
+  if (process.env.MEETING_ASSISTANT_MODE === 'true') return true;
   try {
     const apiV2 = createApiV2(token, config.serviceKey);
     const response = await apiV2.patch<
@@ -59,6 +60,7 @@ export const addBotLog = async ({
     category: LogCategory,
     subCategory: LogSubCategory<LogCategory>,
 }, logger: Logger) => {
+  if (process.env.MEETING_ASSISTANT_MODE === 'true') return true;
   try {
     const apiV2 = createApiV2(token, config.serviceKey);
     const response = await apiV2.patch<

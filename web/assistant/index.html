@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Meeting Notes</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body>
+<header><a class="brand" href="/">◉ <span>Meeting Notes</span></a><span class="local">● Lokal auf deinem Rechner</span></header>
+<main>
+<section class="intro"><p class="eyebrow">DEIN STUMMER MEETING-ASSISTENT</p><h1>Du besprichst.<br> Dein Bot hält fest.</h1><p>Ein eigener Teilnehmer für Google Meet. Aufnahme, Transkript und visuelle Belege bleiben bei dir.</p></section>
+<div class="layout">
+<aside>
+<section class="panel"><h2>Neue Besprechung</h2><form id="start-form"><label for="title">Titel</label><input id="title" required maxlength="120" placeholder="Produktreview mit Gabriel"><label for="url">Google-Meet-Link</label><input id="url" type="url" required placeholder="https://meet.google.com/abc-defg-hij"><label class="check"><input id="consent" type="checkbox" required><span>Alle Beteiligten wissen von der Aufnahme und haben zugestimmt.</span></label><button id="join" type="submit">Bot beitreten lassen <span>↗</span></button></form><p class="hint">Gastbeitritt · Kamera und Mikrofon gesperrt · Gastgeber muss den Bot gegebenenfalls zulassen.</p></section>
+<section class="panel"><h2>Vorhandene Aufnahme</h2><p class="hint">Video oder Audio importieren und lokal auswerten. Es gilt die Bestätigung oben.</p><label class="file-label" for="upload">Aufnahme auswählen</label><input id="upload" type="file" accept=".webm,.mp4,.mov,.mkv,.wav,.mp3,.m4a,.flac"><p id="upload-status" class="hint" role="status"></p></section>
+<section class="panel setup"><h2>Laufzeit</h2><div id="health">Wird geprüft …</div></section>
+</aside>
+<section class="workspace"><div class="section-head"><h2>Deine Besprechungen</h2><span id="count" class="muted"></span></div><div id="meetings" class="meeting-list"></div><section id="detail" class="panel detail"><div class="empty"><span>◎</span><h2>Platz für die nächste gute Idee.</h2><p>Starte einen Bot oder importiere eine Aufnahme.<br>Hier erscheinen Transkript, Aufgaben und Screenshots.</p></div></section></section>
+</div>
+<p id="message" role="alert" hidden></p>
+<footer>Open Source · Auf Basis von ScreenApp Meeting Bot · Lokales Whisper · MVP für Google Meet</footer>
+</main></body></html>

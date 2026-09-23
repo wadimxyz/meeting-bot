@@ -20,3 +20,8 @@ debug-videos/
 compose.override.yml
 compose.override.yml.bak
 docker-compose.override.yml
+
+meeting-data/
+models/
+.assistant-test/
+web/assistant/app.js
